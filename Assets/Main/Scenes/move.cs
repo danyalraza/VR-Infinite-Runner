@@ -23,8 +23,6 @@ public class move : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-//		moveDirection.y -= gravity * Time.deltaTime;
-		//move the player
 		controller.Move(moveDirection * Time.deltaTime);
 	}
 	private void CheckHeight()

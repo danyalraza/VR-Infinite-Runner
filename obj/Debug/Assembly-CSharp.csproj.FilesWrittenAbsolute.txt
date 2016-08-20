@@ -17,3 +17,7 @@
 /Users/Danyal/hackthe6ix/VR-Shooter/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/Danyal/hackthe6ix/VR-Shooter/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/Danyal/hackthe6ix/VR-Shooter/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/Danyal/hackthe6ix/VR-Shooter/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/Danyal/hackthe6ix/VR-Shooter/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/Danyal/hackthe6ix/VR-Shooter/obj/Debug/Assembly-CSharp.dll
+/Users/Danyal/hackthe6ix/VR-Shooter/obj/Debug/Assembly-CSharp.dll.mdb
