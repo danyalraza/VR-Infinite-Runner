@@ -7,7 +7,7 @@ public class move : MonoBehaviour {
 
 	private const float ACCELERATION = 2f;
 	private const float GRAVITY = 0.981f;
-	private float forwardSpeed = 6.0f;
+	private float forwardSpeed = 12.0f;
 
 	private Vector3 yUnitVec = new Vector3 (0, 1, 0);
 	private Vector3 forward = Vector3.zero;
@@ -38,7 +38,7 @@ public class move : MonoBehaviour {
 		dir += forward * forwardSpeed;
 
 		forwardSpeed *= 1.001f;
-		forwardSpeed = Mathf.Min (10.0f, forwardSpeed);
+		forwardSpeed = Mathf.Min (16.0f, forwardSpeed);
 		// Applies y acceleration
 		if (isPressed () && fuel >= 1 && (controller.collisionFlags & CollisionFlags.Above) == 0) {
 			ySpeed += ACCELERATION;
