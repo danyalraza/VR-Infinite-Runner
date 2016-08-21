@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class move : MonoBehaviour {
@@ -11,46 +12,39 @@ public class move : MonoBehaviour {
 	private Vector3 forward = Vector3.zero;
 	private CharacterController controller;
 	private float ySpeed = 0;
-	private bool pressed = false;
+
+	private float fuel = 100;
+	public Text fuelText;
 
 	void Start () {
 		controller = (CharacterController) GetComponent(typeof(CharacterController));
 		forward = transform.forward;
 		forward = transform.TransformDirection(forward);
 		forward *= FORWARD_SPEED;
+		setFuelText ();
 	}
 
 	void Update () {
 		Vector3 dir = Vector3.zero;
 		dir += forward;
 		// Applies y acceleration
-		if (isPressed()) {
+		if (Input.GetMouseButton(0) && fuel >= 1) {
 			ySpeed += ACCELERATION;
+			fuel--;
 		}
 		if (controller.isGrounded && ySpeed < 0) {
+			fuel += 0.5f;
 			ySpeed = 0;
 		} else {
 			ySpeed -= GRAVITY;
 		}
 		dir += ySpeed * yUnitVec;
 		controller.Move(dir * Time.deltaTime);
+		// Cap the fuel to 100.
+		fuel = Mathf.Min (100, fuel);
+		setFuelText ();
 	}
-
-	private bool isPressed(){
-		// Checks for updates
-		if (Input.GetMouseButtonDown(0)) {
-			pressed = true;
-		} else if (Input.GetMouseButtonUp(0)) {
-			pressed = false;
-		}
-		return GvrViewer.Instance.Triggered || pressed;
-	}
-
-	private void CheckHeight()
-	{
-//		if (transform.position.y < -10)
-//		{
-//			GameManager.Instance.Die();
-//		}
+	void setFuelText() {
+		fuelText.text = "Fuel: " + (Mathf.FloorToInt(fuel)).ToString () + "%";
 	}
 }
