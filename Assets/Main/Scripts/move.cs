@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class move : Photon.MonoBehaviour {
@@ -15,6 +16,7 @@ public class move : Photon.MonoBehaviour {
 
 	private bool pressed = false;
 	private float fuel = 100;
+	private int points = 0;
 	public Text fuelText;
 
 	void Start () {
@@ -58,7 +60,7 @@ public class move : Photon.MonoBehaviour {
 	}
 
 	void setFuelText() {
-		fuelText.text = "Fuel: " + (Mathf.FloorToInt(fuel)).ToString () + "%";
+//		fuelText.text = "Fuel: " + (Mathf.FloorToInt(fuel)).ToString () + "%";
 	}
 
 	private bool isPressed(){
@@ -76,6 +78,14 @@ public class move : Photon.MonoBehaviour {
 			stream.SendNext (controller.transform.position);
 		} else {
 			controller.transform.position = (Vector3)stream.ReceiveNext ();
+
+  void OnTriggerEnter(Collider other){
+		if(other.gameObject.CompareTag("Coin")) {
+			other.GetComponent<AudioSource> ().Play ();
+			fuel += 20;
+		}
+		if (other.gameObject.CompareTag ("obstacle")) {
+			SceneManager.LoadScene("IntroScene");
 		}
 	}
 }

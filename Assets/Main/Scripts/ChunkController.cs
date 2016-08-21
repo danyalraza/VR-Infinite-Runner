@@ -12,7 +12,7 @@ public class ChunkController : MonoBehaviour {
 				playerPos = playerObject.transform.position.z;
 			} else {
 				playerPos = playerObject.transform.position.z;
-				if (playerPos > (gameObject.transform.position.z + 50f)) {
+				if (playerPos > (gameObject.transform.position.z + 100f)) {
 					Destroy (gameObject);
 				}
 			}
