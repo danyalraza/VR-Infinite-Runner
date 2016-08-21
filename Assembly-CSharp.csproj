@@ -251,9 +251,6 @@
  <Reference Include="UnityEngine.Networking">
  <HintPath>/opt/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>/opt/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
- </Reference>
  <Reference Include="Photon3Unity3D">
  <HintPath>/home/alston/Projects/VR-Shooter/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>

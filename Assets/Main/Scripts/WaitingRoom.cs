@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class WaitingRoom : MonoBehaviour {
-	const string ROOM_NAME = "THE_ROOM";
+	const string ROOM_NAME = "THE_ROOM!";
 	const int PLAYERS_TO_START = 1;
 	bool connected = false;
 	bool switchLevels = false;
