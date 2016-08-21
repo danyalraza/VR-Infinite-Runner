@@ -822,11 +822,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e4f3a56e6254e5ea53115d906c9846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartText: {fileID: 0}
+  restartText: {fileID: 1540453330}
   music: {fileID: 502002045}
   fuelText: {fileID: 1927835920}
   restartButton: {fileID: 1120676086}
-  manager: {fileID: 0}
+  manager: {fileID: 1445934416}
 --- !u!143 &1763880014
 CharacterController:
   m_ObjectHideFlags: 0

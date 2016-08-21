@@ -47,10 +47,11 @@ public class move : MonoBehaviour {
 			ySpeed = 0;
 			fuel--;
 		} else {
-			fuel += 0.2f;
+			fuel += 0.5f;
 		}
 		if (controller.isGrounded && ySpeed < 0) {
 			ySpeed = 0;
+			fuel += 2.0f;
 		} else {
 			ySpeed -= GRAVITY;
 		}
@@ -92,7 +93,7 @@ public class move : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.CompareTag("Coin")) {
 			other.GetComponent<AudioSource> ().Play ();
-			fuel += 8;
+			fuel += 16;
 		}
 		if (other.gameObject.CompareTag ("obstacle")) {
 			restartText.text = "Restart";
