@@ -23,6 +23,7 @@ public class move : MonoBehaviour {
 	public AudioSource music;
 	public Text fuelText;
 	public Button restartButton;
+	public TileManager manager;
 
 	void Start () {
 		controller = (CharacterController) GetComponent(typeof(CharacterController));
@@ -35,6 +36,7 @@ public class move : MonoBehaviour {
 	void Update () {
 		Vector3 dir = Vector3.zero;
 		dir += forward * forwardSpeed;
+
 		forwardSpeed *= 1.001f;
 		forwardSpeed = Mathf.Min (10.0f, forwardSpeed);
 		// Applies y acceleration
@@ -54,6 +56,7 @@ public class move : MonoBehaviour {
 		}
 		dir += ySpeed * yUnitVec;
 		if (!gameOver && started) {
+			manager.addX (dir.magnitude);
 			controller.Move (dir * Time.deltaTime);
 			// Cap the fuel to 100.
 			fuel = Mathf.Min (100, fuel);
@@ -89,13 +92,13 @@ public class move : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.CompareTag("Coin")) {
 			other.GetComponent<AudioSource> ().Play ();
-			fuel += 7;
+			fuel += 8;
 		}
 		if (other.gameObject.CompareTag ("obstacle")) {
 			restartText.text = "Restart";
 			restartButton.gameObject.SetActive (true);
 			restartButton.interactable = true;
-			fuelText.text = "Game over";
+			fuelText.text = "Score: " + manager.getX().ToString();
 			gameOver = true;
 		}
 	}
