@@ -8,7 +8,7 @@ public class WaitingRoom : MonoBehaviour {
 	bool switchLevels = false;
 
 	void Start () {
-		ROOM_NAME = "THE_ROOMA";
+		ROOM_NAME = "THE_ROOMMMM";
 	}
 	
 	void Update () {

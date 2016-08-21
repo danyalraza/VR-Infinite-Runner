@@ -20,8 +20,9 @@ public class move : Photon.MonoBehaviour {
 	public Text fuelText;
 
 	void Start () {
+		controller = (CharacterController)GetComponent (typeof(CharacterController));
+		Debug.Log (">>>>>>>>>>>>>NEW PLAYER<<<<<<<<<<<<<<<<<<<<<");
 		if (photonView.isMine) {
-			controller = (CharacterController)GetComponent (typeof(CharacterController));
 			forward = transform.forward;
 			forward = transform.TransformDirection (forward);
 			forward *= FORWARD_SPEED;
