@@ -13,7 +13,7 @@ public class ChunkController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		playerPos = playerObject.transform.position.z;
-		if (playerPos > (gameObject.transform.position.z + 50f)) {
+		if (playerPos > (gameObject.transform.position.z + 100f)) {
 			Destroy(gameObject);
 		}
 	}
