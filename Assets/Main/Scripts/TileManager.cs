@@ -26,6 +26,8 @@ public class TileManager : MonoBehaviour {
 	}
 
 	public void SpawnChunk() {
+		int randomTileIndex = Random.Range (0, levelTiles.Length);
+		nextChunkPrefab = levelTiles [randomTileIndex];
 		currentChunk = (GameObject) Instantiate (nextChunkPrefab, currentChunk.transform.GetChild(0).position, Quaternion.identity);
 	}
 }
