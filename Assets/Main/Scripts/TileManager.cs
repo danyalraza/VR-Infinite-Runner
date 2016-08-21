@@ -8,7 +8,7 @@ public class TileManager : MonoBehaviour {
 	public float currentpos;
 	// Use this for initialization
 	void Start () {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1; i++) {
 			SpawnChunk ();
 		}
 		currentpos = 0;
