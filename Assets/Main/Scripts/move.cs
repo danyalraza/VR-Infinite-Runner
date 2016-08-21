@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class move : MonoBehaviour {
+public class move : Photon.MonoBehaviour {
 
 	private const float ACCELERATION = 2f;
 	private const float GRAVITY = 0.981f;
@@ -20,39 +20,43 @@ public class move : MonoBehaviour {
 	public Text fuelText;
 
 	void Start () {
-		controller = (CharacterController) GetComponent(typeof(CharacterController));
-		forward = transform.forward;
-		forward = transform.TransformDirection(forward);
-		forward *= FORWARD_SPEED;
-		setFuelText ();
+		if (photonView.isMine) {
+			controller = (CharacterController)GetComponent (typeof(CharacterController));
+			forward = transform.forward;
+			forward = transform.TransformDirection (forward);
+			forward *= FORWARD_SPEED;
+			setFuelText ();
+		}
 	}
 
 	void Update () {
-		Vector3 dir = Vector3.zero;
-		dir += forward;
-		// Applies y acceleration
-		if (isPressed() && fuel >= 1 && (controller.collisionFlags & CollisionFlags.Above) == 0) {
-			ySpeed += ACCELERATION;
-			fuel--;
+		if (photonView.isMine) {
+			Vector3 dir = Vector3.zero;
+			dir += forward;
+			// Applies y acceleration
+			if (isPressed () && fuel >= 1 && (controller.collisionFlags & CollisionFlags.Above) == 0) {
+				ySpeed += ACCELERATION;
+				fuel--;
+			}
+			if ((controller.collisionFlags & CollisionFlags.Above) != 0) {
+				ySpeed = 0;
+				fuel--;
+			}
+			if (controller.isGrounded && ySpeed < 0) {
+				fuel += 1.5f;
+				ySpeed = 0;
+			} else {
+				ySpeed -= GRAVITY;
+			}
+			if (pressed == false) {
+				fuel += 0.5f;
+			}
+			dir += ySpeed * yUnitVec;
+			controller.Move (dir * Time.deltaTime);
+			// Cap the fuel to 100.
+			fuel = Mathf.Min (100, fuel);
+			setFuelText ();
 		}
-		if ((controller.collisionFlags & CollisionFlags.Above) != 0) {
-			ySpeed = 0;
-			fuel--;
-		}
-		if (controller.isGrounded && ySpeed < 0) {
-			fuel += 1.5f;
-			ySpeed = 0;
-		} else {
-			ySpeed -= GRAVITY;
-		}
-		if (pressed == false) {
-			fuel += 0.5f;
-		}
-		dir += ySpeed * yUnitVec;
-		controller.Move(dir * Time.deltaTime);
-		// Cap the fuel to 100.
-		fuel = Mathf.Min (100, fuel);
-		setFuelText ();
 	}
 
 	void setFuelText() {
@@ -69,6 +73,13 @@ public class move : MonoBehaviour {
 		return GvrViewer.Instance.Triggered || pressed;
 	}
 
+	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info){
+		if (stream.isWriting) {
+			stream.SendNext (controller.transform.position);
+		} else {
+			controller.transform.position = (Vector3)stream.ReceiveNext ();
+		}
+	}
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.CompareTag("Coin")) {
 			other.GetComponent<AudioSource> ().Play ();

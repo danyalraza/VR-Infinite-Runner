@@ -4,13 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class IntroLevel : MonoBehaviour {
 
-	public void StraightLevelClick()
-	{
-		SceneManager.LoadScene("straightPathsLevel");
-	}
+	private Vector3 startingPoint = new Vector3(0, 0, 4);
+	public static GameObject player = null;
 
-	public void RotatedLevelClick()
-	{
-		SceneManager.LoadScene("rotatedPathsLevel");
+	void Start () {
+		player = PhotonNetwork.Instantiate (
+			"Playa",
+			startingPoint,
+			Quaternion.identity,
+			0) as GameObject;
+		Debug.Log ("PLAYER CREATED!: " + player.name);
 	}
 }

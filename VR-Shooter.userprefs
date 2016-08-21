@@ -1,12 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Main/Scripts/TileManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Main/Scripts/ChunkPhoton.cs">
     <Files>
-      <File FileName="Assets/Main/Scripts/TileManager.cs" Line="17" Column="36" />
-      <File FileName="Assets/Main/Scripts/move.cs" Line="37" Column="17" />
-      <File FileName="Assets/Main/Scripts/IntroLevel.cs" Line="1" Column="1" />
-      <File FileName="Assets/Main/Scripts/ChunkController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Main/Scripts/obstacle.cs" Line="1" Column="1" />
+      <File FileName="Assets/Main/Scripts/ChunkPhoton.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
