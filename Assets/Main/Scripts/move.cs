@@ -30,15 +30,22 @@ public class move : MonoBehaviour {
 		Vector3 dir = Vector3.zero;
 		dir += forward;
 		// Applies y acceleration
-		if (isPressed() && fuel >= 1) {
+		if (isPressed() && fuel >= 1 && (controller.collisionFlags & CollisionFlags.Above) == 0) {
 			ySpeed += ACCELERATION;
 			fuel--;
 		}
+		if ((controller.collisionFlags & CollisionFlags.Above) != 0) {
+			ySpeed = 0;
+			fuel--;
+		}
 		if (controller.isGrounded && ySpeed < 0) {
-			fuel += 0.5f;
+			fuel += 1.5f;
 			ySpeed = 0;
 		} else {
 			ySpeed -= GRAVITY;
+		}
+		if (pressed == false) {
+			fuel += 0.5f;
 		}
 		dir += ySpeed * yUnitVec;
 		controller.Move(dir * Time.deltaTime);

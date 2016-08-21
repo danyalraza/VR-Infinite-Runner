@@ -36,14 +36,7 @@ public class WaitingRoom : MonoBehaviour {
 
 
 	void OnJoinedRoom() {
-		TextMesh mesh = (TextMesh) GetComponent (typeof(TextMesh));
-		mesh.text = "JOINED ROOM!";
-		Debug.Log ("JOINED ROOM!");
-		Debug.Log ("Offline mode: " + PhotonNetwork.offlineMode);
-		Debug.Log ("Connected: " + PhotonNetwork.connected);
-		// PhotonNetwork.Instantiate("NetworkedPlayer", Vector3.zero, Quaternion.identity, 0);
 		int players = PhotonNetwork.room.playerCount;
-		Debug.Log ("There are " + players + " players");
 		if (players >= PLAYERS_TO_START) {
 			startGame ();
 		}
