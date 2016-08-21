@@ -2,20 +2,18 @@
 using System.Collections;
 
 public class WaitingRoom : MonoBehaviour {
-	const string ROOM_NAME = "THE_ROOM!!";
+	string ROOM_NAME;
 	const int PLAYERS_TO_START = 1;
 	bool connected = false;
 	bool switchLevels = false;
 
 	void Start () {
+		ROOM_NAME = "THE_ROOM" + Random.Range (0, 3000);
 	}
 	
 	void Update () {
 		if (Input.GetMouseButtonUp (0) && !connected) {
 			onReady ();
-		}
-		if (connected) {
-			Debug.Log (PhotonNetwork.room.playerCount + " PLAYERS");
 		}
 		if (connected && PhotonNetwork.room.playerCount >= PLAYERS_TO_START) {
 			startGame ();

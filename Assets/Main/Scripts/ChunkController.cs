@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ChunkController : MonoBehaviour {
+public class ChunkController : Photon.MonoBehaviour {
 	public float playerPos = -999;
 	
 	// Update is called once per frame
