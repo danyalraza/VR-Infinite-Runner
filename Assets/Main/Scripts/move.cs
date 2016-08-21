@@ -29,7 +29,7 @@ public class move : MonoBehaviour {
 		Vector3 dir = Vector3.zero;
 		dir += forward;
 		// Applies y acceleration
-		if (isPressed() && fuel >= 1) {
+		if (isPressed() && fuel >= 1 && (controller.collisionFlags & CollisionFlags.Above) == 0) {
 			ySpeed += ACCELERATION;
 			fuel--;
 		}

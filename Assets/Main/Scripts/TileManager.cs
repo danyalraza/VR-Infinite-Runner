@@ -4,6 +4,7 @@ using System.Collections;
 public class TileManager : MonoBehaviour {
 	public GameObject nextChunkPrefab;
 	public GameObject currentChunk;
+	public GameObject[] levelTiles;
 	public float currentpos;
 	// Use this for initialization
 	void Start () {
@@ -18,9 +19,6 @@ public class TileManager : MonoBehaviour {
 		GameObject playerObject = GameObject.Find("Tank");
 		Vector3 playerPos = playerObject.transform.position;
 		currentpos += playerObject.GetComponent<Rigidbody>().velocity.z * Time.fixedDeltaTime;
-		Debug.Log ("The current velocity is: " + playerObject.GetComponent<Rigidbody> ().velocity.z);
-
-		Debug.Log ("The current position is: " + currentpos);
 		if (currentpos > 50) {
 			SpawnChunk();
 			currentpos = 0;
