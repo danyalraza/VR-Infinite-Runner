@@ -15,10 +15,10 @@ MonoBehaviour:
   Protocol: 0
   ServerAddress: 
   ServerPort: 5055
-  AppID: 7f292fa5-5220-4d49-b6db-f97997b03960
-  PreferredRegion: 0
+  AppID: ae9ca465-1ae5-4288-bb8a-bd1be795cb8d
+  PreferredRegion: 1
   EnabledRegions: -1
-  JoinLobby: 0
+  JoinLobby: 1
   EnableLobbyStatistics: 0
   RpcList:
   - Chat
