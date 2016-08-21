@@ -6,7 +6,7 @@ public class ChunkController : MonoBehaviour {
 	public float playerPos;
 	// Use this for initialization
 	void Start () {
-		playerObject = GameObject.Find("Tank");
+		playerObject = GameObject.Find("Main Camera");
 		playerPos = playerObject.transform.position.z;
 	}
 	

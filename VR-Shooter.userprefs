@@ -7,6 +7,7 @@
       <File FileName="Assets/Main/Scripts/IntroLevel.cs" Line="1" Column="1" />
       <File FileName="Assets/Main/Scripts/ChunkController.cs" Line="1" Column="1" />
       <File FileName="Assets/Main/Scripts/obstacle.cs" Line="1" Column="1" />
+>>>>>>> 114023230e56c5ad2758bdf198377e7bf2f3bea0
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

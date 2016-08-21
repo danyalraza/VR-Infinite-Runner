@@ -7,7 +7,7 @@ public class move : MonoBehaviour {
 
 	private const float ACCELERATION = 2f;
 	private const float GRAVITY = 0.981f;
-	private const float FORWARD_SPEED = 6.0f;
+	private float forwardSpeed = 6.0f;
 
 	private Vector3 yUnitVec = new Vector3 (0, 1, 0);
 	private Vector3 forward = Vector3.zero;
@@ -20,6 +20,7 @@ public class move : MonoBehaviour {
 	private bool started = false;
 
 	public Text restartText;
+	public AudioSource music;
 	public Text fuelText;
 	public Button restartButton;
 
@@ -27,24 +28,26 @@ public class move : MonoBehaviour {
 		controller = (CharacterController) GetComponent(typeof(CharacterController));
 		forward = transform.forward;
 		forward = transform.TransformDirection(forward);
-		forward *= FORWARD_SPEED;
 		setFuelText ();
+		music.Play ();
 	}
 
 	void Update () {
 		Vector3 dir = Vector3.zero;
-		dir += forward;
+		dir += forward * forwardSpeed;
+		forwardSpeed *= 1.001f;
+		forwardSpeed = Mathf.Min (10.0f, forwardSpeed);
 		// Applies y acceleration
-		if (isPressed() && fuel >= 1 && (controller.collisionFlags & CollisionFlags.Above) == 0) {
+		if (isPressed () && fuel >= 1 && (controller.collisionFlags & CollisionFlags.Above) == 0) {
 			ySpeed += ACCELERATION;
 			fuel--;
-		}
-		if ((controller.collisionFlags & CollisionFlags.Above) != 0) {
+		} else if ((controller.collisionFlags & CollisionFlags.Above) != 0) {
 			ySpeed = 0;
 			fuel--;
+		} else {
+			fuel += 0.2f;
 		}
 		if (controller.isGrounded && ySpeed < 0) {
-			fuel += 2f;
 			ySpeed = 0;
 		} else {
 			ySpeed -= GRAVITY;
@@ -70,7 +73,7 @@ public class move : MonoBehaviour {
 	}
 
 	void setFuelText() {
-		fuelText.text = "Fuel: " + (Mathf.FloorToInt(fuel)).ToString () + "%";
+		fuelText.text = "Energy: " + (Mathf.FloorToInt(fuel)).ToString () + "%";
 	}
 
 	private bool isPressed(){
@@ -86,7 +89,7 @@ public class move : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.CompareTag("Coin")) {
 			other.GetComponent<AudioSource> ().Play ();
-			fuel += 20;
+			fuel += 5;
 		}
 		if (other.gameObject.CompareTag ("obstacle")) {
 			restartText.text = "Restart";
