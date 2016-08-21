@@ -106,20 +106,17 @@
  <Reference Include="UnityEditor.TreeEditor">
  <HintPath>/opt/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
- </Reference>
- <Reference Include="Newtonsoft.Json">
- <HintPath>/Users/ianlo/Developer/VR-Shooter/Assets/Photon Unity Networking/Editor/PhotonNetwork/Newtonsoft.Json.dll</HintPath>
+ <Reference Include="Photon3Unity3D">
+ <HintPath>/home/alston/Projects/VR-Shooter/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="Google.ProtocolBuffers">
- <HintPath>/Users/ianlo/Developer/VR-Shooter/Assets/Plugins/Google.ProtocolBuffers.dll</HintPath>
- </Reference>
- <Reference Include="Photon3Unity3D">
- <HintPath>/Users/ianlo/Developer/VR-Shooter/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>/home/alston/Projects/VR-Shooter/Assets/Plugins/Google.ProtocolBuffers.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>/Users/ianlo/Developer/VR-Shooter/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+ <HintPath>/home/alston/Projects/VR-Shooter/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>/home/alston/Projects/VR-Shooter/Assets/Photon Unity Networking/Editor/PhotonNetwork/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/opt/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>

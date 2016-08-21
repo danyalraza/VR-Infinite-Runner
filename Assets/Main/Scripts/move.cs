@@ -78,8 +78,9 @@ public class move : Photon.MonoBehaviour {
 			stream.SendNext (controller.transform.position);
 		} else {
 			controller.transform.position = (Vector3)stream.ReceiveNext ();
-
-  void OnTriggerEnter(Collider other){
+		}
+	}
+	void OnTriggerEnter(Collider other){
 		if(other.gameObject.CompareTag("Coin")) {
 			other.GetComponent<AudioSource> ().Play ();
 			fuel += 20;
