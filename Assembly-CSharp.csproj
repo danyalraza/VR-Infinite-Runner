@@ -88,9 +88,11 @@
      <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazePointer.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazeResponder.cs" />
      <Compile Include="Assets\Main\Scripts\ChunkController.cs" />
+     <Compile Include="Assets\Main\Scripts\ChunkPhoton.cs" />
      <Compile Include="Assets\Main\Scripts\IntroLevel.cs" />
      <Compile Include="Assets\Main\Scripts\NetworkController.cs" />
      <Compile Include="Assets\Main\Scripts\TileManager.cs" />
+     <Compile Include="Assets\Main\Scripts\WaitingRoom.cs" />
      <Compile Include="Assets\Main\Scripts\move.cs" />
      <Compile Include="Assets\Main\Scripts\obstacle.cs" />
      <Compile Include="Assets\Photon Unity Networking\Demos\Demo2DJumpAndRunWithPhysics\Scripts\Demo2DJumpAndRun.cs" />
