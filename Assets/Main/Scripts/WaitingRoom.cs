@@ -2,9 +2,10 @@
 using System.Collections;
 
 public class WaitingRoom : MonoBehaviour {
-	const string ROOM_NAME = "ROOM";
-	const int PLAYERS_TO_START = 2;
+	const string ROOM_NAME = "THE_ROOM";
+	const int PLAYERS_TO_START = 1;
 	bool connected = false;
+	bool switchLevels = false;
 
 	void Start () {
 	}
@@ -44,11 +45,21 @@ public class WaitingRoom : MonoBehaviour {
 	}
 
 	void startGame(){
+		Debug.Log ("Started GAME: " + PhotonNetwork.room);
+		switchLevels = true;
+		PhotonNetwork.isMessageQueueRunning = false;
 		Application.LoadLevel ("IntroScene");
 	}
 
+	void OnLevelWasLoaded(){
+		PhotonNetwork.isMessageQueueRunning = true;
+		Debug.Log ("Loaded!");
+	}
+
 	void OnDestroy(){
-		PhotonNetwork.Disconnect ();
-		Debug.Log ("DISCONNECTED!");
+		if (connected && !switchLevels) {
+			PhotonNetwork.Disconnect ();
+			Debug.Log ("DISCONNECTED!");
+		}
 	}
 }

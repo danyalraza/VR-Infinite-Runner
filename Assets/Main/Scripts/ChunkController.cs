@@ -2,19 +2,20 @@
 using System.Collections;
 
 public class ChunkController : MonoBehaviour {
-	public GameObject playerObject;
-	public float playerPos;
-	// Use this for initialization
-	void Start () {
-		playerObject = GameObject.Find("Tank");
-		playerPos = playerObject.transform.position.z;
-	}
+	public float playerPos = -999;
 	
 	// Update is called once per frame
 	void Update () {
-		playerPos = playerObject.transform.position.z;
-		if (playerPos > (gameObject.transform.position.z + 50f)) {
-			Destroy(gameObject);
+		GameObject playerObject = IntroLevel.player;
+		if (playerObject != null) {
+			if (playerPos == -999) {
+				playerPos = playerObject.transform.position.z;
+			} else {
+				playerPos = playerObject.transform.position.z;
+				if (playerPos > (gameObject.transform.position.z + 50f)) {
+					Destroy (gameObject);
+				}
+			}
 		}
 	}
 }

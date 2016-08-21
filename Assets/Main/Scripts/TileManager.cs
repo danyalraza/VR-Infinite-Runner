@@ -16,12 +16,14 @@ public class TileManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		GameObject playerObject = GameObject.Find("Tank");
-		Vector3 playerPos = playerObject.transform.position;
-		currentpos += playerObject.GetComponent<Rigidbody>().velocity.z * Time.fixedDeltaTime;
-		if (currentpos > 50) {
-			SpawnChunk();
-			currentpos = 0;
+		GameObject playerObject = IntroLevel.player;
+		if (playerObject != null) {
+			Vector3 playerPos = playerObject.transform.position;
+			currentpos += playerObject.GetComponent<Rigidbody> ().velocity.z * Time.fixedDeltaTime;
+			if (currentpos > 50) {
+				SpawnChunk ();
+				currentpos = 0;
+			}
 		}
 	}
 
