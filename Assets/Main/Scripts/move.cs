@@ -18,6 +18,7 @@ public class move : MonoBehaviour {
 	public Text fuelText;
 
 	void Start () {
+		setupPhoton ();
 		controller = (CharacterController) GetComponent(typeof(CharacterController));
 		forward = transform.forward;
 		forward = transform.TransformDirection(forward);
@@ -58,5 +59,14 @@ public class move : MonoBehaviour {
 			pressed = false;
 		}
 		return GvrViewer.Instance.Triggered || pressed;
+	}
+
+	private void setupPhoton(){
+		PhotonNetwork.Instantiate (
+			"Player",
+			new Vector3 (0, 0, 4),
+			Quaternion.identity,
+			1
+		);
 	}
 }
