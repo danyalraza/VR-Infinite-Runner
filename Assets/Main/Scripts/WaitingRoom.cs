@@ -3,7 +3,7 @@ using System.Collections;
 
 public class WaitingRoom : MonoBehaviour {
 	string ROOM_NAME;
-	const int PLAYERS_TO_START = 2;
+	const int PLAYERS_TO_START = 1;
 	bool connected = false;
 	bool switchLevels = false;
 
@@ -25,6 +25,7 @@ public class WaitingRoom : MonoBehaviour {
 		TextMesh mesh = (TextMesh) GetComponent (typeof(TextMesh));
 		mesh.text = "Waiting for other players...";
 		Debug.Log ("Connected");
+		Debug.Log ("I AM MASTER? " + PhotonNetwork.isMasterClient);
 	}
 
 	void OnJoinedLobby() {

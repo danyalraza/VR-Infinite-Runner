@@ -76,10 +76,13 @@ public class move : Photon.MonoBehaviour {
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info){
 		if (stream.isWriting) {
 			stream.SendNext (controller.transform.position);
+			Debug.Log ("SENT POSITION!");
 		} else {
 			controller.transform.position = (Vector3)stream.ReceiveNext ();
+			Debug.Log ("RECEIVED POSITION!");
 		}
 	}
+		
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.CompareTag("Coin")) {
 			other.GetComponent<AudioSource> ().Play ();

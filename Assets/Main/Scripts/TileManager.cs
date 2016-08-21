@@ -8,10 +8,12 @@ public class TileManager : MonoBehaviour {
 	public float currentpos;
 	// Use this for initialization
 	void Start () {
-		for (int i = 0; i < 10; i++) {
-			SpawnChunk ();
+		if (PhotonNetwork.isMasterClient) {
+			for (int i = 0; i < 10; i++) {
+				SpawnChunk ();
+			}
+			currentpos = 0;
 		}
-		currentpos = 0;
 	}
 
 	// Update is called once per frame
@@ -30,6 +32,8 @@ public class TileManager : MonoBehaviour {
 	public void SpawnChunk() {
 		int randomTileIndex = Random.Range (0, levelTiles.Length);
 		nextChunkPrefab = levelTiles [randomTileIndex];
-		currentChunk = (GameObject) PhotonNetwork.Instantiate (nextChunkPrefab.name, currentChunk.transform.GetChild(0).position, Quaternion.identity, 0);
+		currentChunk = PhotonNetwork.Instantiate (nextChunkPrefab.name, currentChunk.transform.GetChild(0).position,
+			Quaternion.identity, 0) as GameObject;
+		Debug.Log ("INSTANTIARED NEW CHUNK!");
 	}
 }
