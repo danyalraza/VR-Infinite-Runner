@@ -83,7 +83,7 @@ public class move : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.CompareTag("Coin")) {
 			other.GetComponent<AudioSource> ().Play ();
-			fuel += 5;
+			fuel += 7;
 		}
 		if (other.gameObject.CompareTag ("obstacle")) {
 			restartButton.gameObject.SetActive (true);
