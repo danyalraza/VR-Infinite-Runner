@@ -3,12 +3,12 @@ using System.Collections;
 
 public class WaitingRoom : MonoBehaviour {
 	string ROOM_NAME;
-	const int PLAYERS_TO_START = 1;
+	const int PLAYERS_TO_START = 2;
 	bool connected = false;
 	bool switchLevels = false;
 
 	void Start () {
-		ROOM_NAME = "THE_ROOM" + Random.Range (0, 3000);
+		ROOM_NAME = "THE_ROOMA";
 	}
 	
 	void Update () {
