@@ -13,6 +13,7 @@ public class move : MonoBehaviour {
 	private CharacterController controller;
 	private float ySpeed = 0;
 
+	private bool pressed = false;
 	private float fuel = 100;
 	public Text fuelText;
 
@@ -28,7 +29,7 @@ public class move : MonoBehaviour {
 		Vector3 dir = Vector3.zero;
 		dir += forward;
 		// Applies y acceleration
-		if (Input.GetMouseButton(0) && fuel >= 1) {
+		if (isPressed() && fuel >= 1) {
 			ySpeed += ACCELERATION;
 			fuel--;
 		}
@@ -44,7 +45,18 @@ public class move : MonoBehaviour {
 		fuel = Mathf.Min (100, fuel);
 		setFuelText ();
 	}
+
 	void setFuelText() {
 		fuelText.text = "Fuel: " + (Mathf.FloorToInt(fuel)).ToString () + "%";
+	}
+
+	private bool isPressed(){
+		// Checks for updates
+		if (Input.GetMouseButtonDown(0)) {
+			pressed = true;
+		} else if (Input.GetMouseButtonUp(0)) {
+			pressed = false;
+		}
+		return GvrViewer.Instance.Triggered || pressed;
 	}
 }
