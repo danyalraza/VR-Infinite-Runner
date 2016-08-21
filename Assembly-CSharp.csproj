@@ -89,7 +89,6 @@
      <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazeResponder.cs" />
      <Compile Include="Assets\Main\Scripts\IntroLevel.cs" />
      <Compile Include="Assets\Main\Scripts\NetworkController.cs" />
-     <Compile Include="Assets\Main\Scripts\jump.cs" />
      <Compile Include="Assets\Main\Scripts\move.cs" />
      <Compile Include="Assets\Photon Unity Networking\Demos\Demo2DJumpAndRunWithPhysics\Scripts\Demo2DJumpAndRun.cs" />
      <Compile Include="Assets\Photon Unity Networking\Demos\Demo2DJumpAndRunWithPhysics\Scripts\JumpAndRunMovement.cs" />
