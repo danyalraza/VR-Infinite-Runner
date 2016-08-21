@@ -16,8 +16,10 @@ public class move : MonoBehaviour {
 
 	private bool pressed = false;
 	private float fuel = 100;
-	private int points = 0;
+	private bool gameOver = false;
+
 	public Text fuelText;
+	public Button restartButton;
 
 	void Start () {
 		controller = (CharacterController) GetComponent(typeof(CharacterController));
@@ -25,6 +27,7 @@ public class move : MonoBehaviour {
 		forward = transform.TransformDirection(forward);
 		forward *= FORWARD_SPEED;
 		setFuelText ();
+		restartButton.gameObject.SetActive (false);
 	}
 
 	void Update () {
@@ -40,23 +43,28 @@ public class move : MonoBehaviour {
 			fuel--;
 		}
 		if (controller.isGrounded && ySpeed < 0) {
-			fuel += 1.5f;
+			fuel += 2f;
 			ySpeed = 0;
 		} else {
 			ySpeed -= GRAVITY;
 		}
-		if (pressed == false) {
-			fuel += 0.5f;
-		}
 		dir += ySpeed * yUnitVec;
-		controller.Move(dir * Time.deltaTime);
-		// Cap the fuel to 100.
-		fuel = Mathf.Min (100, fuel);
-		setFuelText ();
+		if (!gameOver) {
+			controller.Move (dir * Time.deltaTime);
+			// Cap the fuel to 100.
+			fuel = Mathf.Min (100, fuel);
+			// Set the minimum fuel to 0.
+			fuel = Mathf.Max (0, fuel);
+			setFuelText ();
+		} else {
+			if (pressed) {
+				SceneManager.LoadScene("IntroScene");
+			}
+		}
 	}
 
 	void setFuelText() {
-//		fuelText.text = "Fuel: " + (Mathf.FloorToInt(fuel)).ToString () + "%";
+		fuelText.text = "Fuel: " + (Mathf.FloorToInt(fuel)).ToString () + "%";
 	}
 
 	private bool isPressed(){
@@ -75,7 +83,10 @@ public class move : MonoBehaviour {
 			fuel += 20;
 		}
 		if (other.gameObject.CompareTag ("obstacle")) {
-			SceneManager.LoadScene("IntroScene");
+			restartButton.gameObject.SetActive (true);
+			restartButton.interactable = true;
+			fuelText.text = "Game over";
+			gameOver = true;
 		}
 	}
 }
