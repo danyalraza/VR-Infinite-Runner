@@ -17,7 +17,9 @@ public class move : MonoBehaviour {
 	private bool pressed = false;
 	private float fuel = 100;
 	private bool gameOver = false;
+	private bool started = false;
 
+	public Text restartText;
 	public Text fuelText;
 	public Button restartButton;
 
@@ -27,7 +29,6 @@ public class move : MonoBehaviour {
 		forward = transform.TransformDirection(forward);
 		forward *= FORWARD_SPEED;
 		setFuelText ();
-		restartButton.gameObject.SetActive (false);
 	}
 
 	void Update () {
@@ -49,13 +50,18 @@ public class move : MonoBehaviour {
 			ySpeed -= GRAVITY;
 		}
 		dir += ySpeed * yUnitVec;
-		if (!gameOver) {
+		if (!gameOver && started) {
 			controller.Move (dir * Time.deltaTime);
 			// Cap the fuel to 100.
 			fuel = Mathf.Min (100, fuel);
 			// Set the minimum fuel to 0.
 			fuel = Mathf.Max (0, fuel);
 			setFuelText ();
+		} else if (!started && !gameOver) {
+			if (pressed) {
+				started = true;
+				restartButton.gameObject.SetActive (false);
+			}
 		} else {
 			if (pressed) {
 				SceneManager.LoadScene("IntroScene");
@@ -83,6 +89,7 @@ public class move : MonoBehaviour {
 			fuel += 20;
 		}
 		if (other.gameObject.CompareTag ("obstacle")) {
+			restartText.text = "Restart";
 			restartButton.gameObject.SetActive (true);
 			restartButton.interactable = true;
 			fuelText.text = "Game over";
