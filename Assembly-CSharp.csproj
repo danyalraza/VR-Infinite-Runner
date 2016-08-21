@@ -87,6 +87,7 @@
      <Compile Include="Assets\GoogleVR\Scripts\UI\GvrReticle.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazePointer.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazeResponder.cs" />
+     <Compile Include="Assets\Main\Scripts\ChunkController.cs" />
      <Compile Include="Assets\Main\Scripts\IntroLevel.cs" />
      <Compile Include="Assets\Main\Scripts\NetworkController.cs" />
      <Compile Include="Assets\Main\Scripts\move.cs" />
