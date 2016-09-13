@@ -7,7 +7,7 @@ public class move : MonoBehaviour {
 
 	private const float ACCELERATION = 2f;
 	private const float GRAVITY = 0.981f;
-	private float forwardSpeed = 6.0f;
+	private float forwardSpeed = 12.0f;
 
 	private Vector3 yUnitVec = new Vector3 (0, 1, 0);
 	private Vector3 forward = Vector3.zero;
@@ -23,6 +23,7 @@ public class move : MonoBehaviour {
 	public AudioSource music;
 	public Text fuelText;
 	public Button restartButton;
+	public TileManager manager;
 
 	void Start () {
 		controller = (CharacterController) GetComponent(typeof(CharacterController));
@@ -35,8 +36,9 @@ public class move : MonoBehaviour {
 	void Update () {
 		Vector3 dir = Vector3.zero;
 		dir += forward * forwardSpeed;
+
 		forwardSpeed *= 1.001f;
-		forwardSpeed = Mathf.Min (10.0f, forwardSpeed);
+		forwardSpeed = Mathf.Min (16.0f, forwardSpeed);
 		// Applies y acceleration
 		if (isPressed () && fuel >= 1 && (controller.collisionFlags & CollisionFlags.Above) == 0) {
 			ySpeed += ACCELERATION;
@@ -45,15 +47,17 @@ public class move : MonoBehaviour {
 			ySpeed = 0;
 			fuel--;
 		} else {
-			fuel += 0.2f;
+			fuel += 0.5f;
 		}
 		if (controller.isGrounded && ySpeed < 0) {
 			ySpeed = 0;
+			fuel += 2.0f;
 		} else {
 			ySpeed -= GRAVITY;
 		}
 		dir += ySpeed * yUnitVec;
 		if (!gameOver && started) {
+			manager.addX (dir.magnitude);
 			controller.Move (dir * Time.deltaTime);
 			// Cap the fuel to 100.
 			fuel = Mathf.Min (100, fuel);
@@ -89,13 +93,13 @@ public class move : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.CompareTag("Coin")) {
 			other.GetComponent<AudioSource> ().Play ();
-			fuel += 7;
+			fuel += 16;
 		}
 		if (other.gameObject.CompareTag ("obstacle")) {
 			restartText.text = "Restart";
 			restartButton.gameObject.SetActive (true);
 			restartButton.interactable = true;
-			fuelText.text = "Game over";
+			fuelText.text = "Score: " + manager.getX().ToString();
 			gameOver = true;
 		}
 	}
